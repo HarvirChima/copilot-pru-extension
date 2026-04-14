@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copilot PRU Tracker – Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
+      </svg>
+      <div>
+        <h1 class="page-title">Copilot PRU Tracker</h1>
+        <p class="page-subtitle">Settings</p>
+      </div>
+    </header>
+
+    <!-- Token section -->
+    <section class="card">
+      <h2 class="card-title">GitHub Personal Access Token</h2>
+      <p class="card-desc">
+        Your PAT is stored locally in your browser and is only ever sent to
+        <code>api.github.com</code>. It is never transmitted to any third-party server.
+      </p>
+
+      <div class="form-group">
+        <label for="token-input" class="form-label">Personal Access Token</label>
+        <div class="input-wrap">
+          <input
+            id="token-input"
+            type="password"
+            class="form-input"
+            placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="btn-toggle-visibility" class="input-action-btn" type="button" aria-label="Toggle token visibility" title="Show/hide token">
+            <svg id="icon-eye" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 2C4.686 2 2 5.56 2 8s2.686 6 6 6 6-3.56 6-6-2.686-6-6-6zm0 10c-2.577 0-4.5-2.56-4.5-4S5.423 4 8 4s4.5 2.56 4.5 4-1.923 4-4.5 4zm0-6.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+            </svg>
+            <svg id="icon-eye-closed" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden>
+              <path d="M.143 2.31a.75.75 0 0 1 1.047-.167l14.5 10.5a.75.75 0 1 1-.88 1.214l-2.248-1.628C11.346 12.634 9.735 13 8 13c-3.314 0-6-3.56-6-6 0-1.18.325-2.286.882-3.228L.31 2.357A.75.75 0 0 1 .143 2.31zM4.196 5.926 5.38 6.768A2.5 2.5 0 0 0 8 10.5c.433 0 .841-.11 1.197-.302l1.183.856A4 4 0 0 1 8 12C5.423 12 3.5 9.44 3.5 8c0-.732.22-1.418.696-2.074zM8 3C9.745 3 11.3 3.5 12.5 4.28l-1.183.856A3.99 3.99 0 0 0 8 4c-.433 0-.841.11-1.197.302l-1.184-.857A7.03 7.03 0 0 1 8 3zm2.62 2.878 1.154.835C12.344 7.35 12.5 7.662 12.5 8c0 .297-.101.616-.281.96l1.096.794C13.75 9.27 14 8.64 14 8c0-1.18-.325-2.286-.882-3.228L14.5 3.75l-.88-1.214-3.5 2.535-.5-.193z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feedback banner -->
+      <div id="feedback" class="feedback" hidden></div>
+
+      <div class="btn-row">
+        <button id="btn-save" class="btn-primary">Save Token</button>
+        <button id="btn-test" class="btn-secondary">Test Connection</button>
+        <button id="btn-clear" class="btn-danger">Clear Token</button>
+      </div>
+    </section>
+
+    <!-- Instructions section -->
+    <section class="card">
+      <h2 class="card-title">How to create a Personal Access Token</h2>
+      <ol class="instructions">
+        <li>
+          Go to
+          <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer">
+            github.com/settings/tokens
+          </a>
+          (or <strong>Settings → Developer settings → Personal access tokens</strong>).
+        </li>
+        <li>Click <strong>Generate new token (classic)</strong>.</li>
+        <li>
+          Give the token a descriptive name, e.g. <em>"Copilot PRU Tracker"</em>.
+        </li>
+        <li>
+          Select the required scopes:
+          <ul class="scope-list">
+            <li><code>read:user</code> – read user profile information</li>
+            <li><code>copilot</code> – access Copilot usage data (if available for your account)</li>
+          </ul>
+        </li>
+        <li>Click <strong>Generate token</strong> and copy it here.</li>
+      </ol>
+
+      <p class="note">
+        <strong>Note:</strong> PRU (Premium Request Usage) data is only available via the API for
+        certain Copilot plans. If the "Test Connection" succeeds but the popup shows "No data",
+        your plan may not yet expose per-user PRU statistics through the GitHub REST API.
+      </p>
+    </section>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copilot PRU Tracker</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
+      </svg>
+      <span class="header-title">Copilot PRU Tracker</span>
+    </div>
+    <div class="header-actions">
+      <button id="btn-refresh" class="icon-btn" title="Refresh data" aria-label="Refresh data">
+        <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill-rule="evenodd" d="M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z"/>
+        </svg>
+      </button>
+      <button id="btn-settings" class="icon-btn" title="Settings" aria-label="Open settings">
+        <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.429 1.525a6.593 6.593 0 0 1 1.142 0c.036.003.108.036.137.146l.289 1.105c.147.56.55.967.997 1.189.174.086.341.178.502.274.43.258.963.267 1.37.038l.936-.55c.093-.056.149-.077.27.015a6.574 6.574 0 0 1 .828.804c.094.112.081.194.054.284l-.452 1.063a1.42 1.42 0 0 0 .004 1.15l.447 1.059c.028.09.04.172-.054.284a6.574 6.574 0 0 1-.827.804c-.12.092-.177.069-.27.015l-.937-.55c-.396-.234-.932-.226-1.366.038a5.08 5.08 0 0 1-.502.274c-.447.222-.85.629-.997 1.189l-.289 1.105c-.029.11-.101.143-.137.146a6.588 6.588 0 0 1-1.142 0c-.036-.003-.108-.036-.137-.146l-.289-1.105c-.147-.56-.55-.967-.997-1.189a4.502 4.502 0 0 1-.502-.274 1.402 1.402 0 0 0-1.368-.038l-.936.55c-.093.055-.149.077-.27-.015a6.574 6.574 0 0 1-.827-.803c-.094-.113-.081-.195-.054-.285l.447-1.058a1.42 1.42 0 0 0 .003-1.151L1.23 5.301c-.028-.09-.04-.171.053-.284a6.574 6.574 0 0 1 .828-.804c.12-.092.176-.069.27-.015l.936.55a1.4 1.4 0 0 0 1.367-.038 4.502 4.502 0 0 1 .502-.274c.447-.222.85-.629.997-1.189l.289-1.105c.029-.11.101-.143.137-.146ZM8 6a2 2 0 1 0 0 4A2 2 0 0 0 8 6Z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div id="state-loading" class="state" hidden>
+    <div class="spinner" aria-label="Loading"></div>
+    <p class="state-msg">Fetching usage data…</p>
+  </div>
+
+  <!-- No Token State -->
+  <div id="state-no-token" class="state" hidden>
+    <svg class="state-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2a4 4 0 0 1 4 4v1H8V7a4 4 0 0 1 4-4zm0 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="currentColor"/>
+    </svg>
+    <p class="state-msg">No GitHub token configured.</p>
+    <button id="btn-go-settings" class="btn-primary">Open Settings</button>
+  </div>
+
+  <!-- Error State -->
+  <div id="state-error" class="state" hidden>
+    <svg class="state-icon state-icon--error" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5a.75.75 0 0 1 1.5 0v4a.75.75 0 0 1-1.5 0v-4zm.75 7a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z"/>
+    </svg>
+    <p id="error-msg" class="state-msg state-msg--error"></p>
+    <button id="btn-retry" class="btn-secondary">Retry</button>
+  </div>
+
+  <!-- No Data State -->
+  <div id="state-no-data" class="state" hidden>
+    <svg class="state-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor"/>
+    </svg>
+    <p class="state-msg">No Copilot usage data available for this account.</p>
+    <p class="state-sub">This may mean your plan doesn't expose PRU data via the API, or you haven't used Copilot yet this billing period.</p>
+    <button id="btn-retry-nodata" class="btn-secondary">Retry</button>
+  </div>
+
+  <!-- Main Content -->
+  <main id="content" hidden>
+    <!-- Billing period -->
+    <div class="billing-period" id="billing-period"></div>
+
+    <!-- Summary cards -->
+    <div class="cards">
+      <div class="card">
+        <span class="card-label">Quota</span>
+        <span id="stat-quota" class="card-value">—</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Used</span>
+        <span id="stat-used" class="card-value value-used">—</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Remaining</span>
+        <span id="stat-remaining" class="card-value value-remaining">—</span>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-section">
+      <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="progress-bar" aria-valuenow="0">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <div class="progress-labels">
+        <span id="progress-pct" class="progress-pct">0%</span>
+        <span id="cache-label" class="cache-label"></span>
+      </div>
+    </div>
+
+    <!-- Per-model breakdown -->
+    <section id="section-models" class="breakdown-section" hidden>
+      <h2 class="section-title">By Model</h2>
+      <ul id="model-list" class="breakdown-list"></ul>
+    </section>
+
+    <!-- Per-day breakdown -->
+    <section id="section-daily" class="breakdown-section" hidden>
+      <h2 class="section-title">Daily Usage</h2>
+      <div id="daily-chart" class="daily-chart"></div>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

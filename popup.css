@@ -1,0 +1,395 @@
+/* =========================================================
+   Copilot PRU Tracker – Popup styles
+   GitHub-inspired dark theme
+   ========================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary:    #0d1117;
+  --bg-secondary:  #161b22;
+  --bg-tertiary:   #21262d;
+  --border:        #30363d;
+  --text-primary:  #c9d1d9;
+  --text-muted:    #8b949e;
+  --link:          #58a6ff;
+  --green:         #238636;
+  --green-light:   #3fb950;
+  --yellow:        #d29922;
+  --yellow-light:  #e3b341;
+  --red:           #da3633;
+  --red-light:     #f85149;
+  --radius:        6px;
+  --popup-width:   360px;
+}
+
+body {
+  width: var(--popup-width);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 200px;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+  width: 28px;
+  height: 28px;
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border-color: var(--border);
+}
+
+.icon-btn:active {
+  background-color: var(--border);
+}
+
+/* ── State views (loading / error / no-token / no-data) ───── */
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.state-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--text-muted);
+}
+
+.state-icon--error {
+  color: var(--red-light);
+}
+
+.state-msg {
+  color: var(--text-primary);
+  font-size: 13px;
+  max-width: 280px;
+}
+
+.state-msg--error {
+  color: var(--red-light);
+}
+
+.state-sub {
+  color: var(--text-muted);
+  font-size: 12px;
+  max-width: 300px;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--bg-tertiary);
+  border-top-color: var(--link);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--green);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: var(--radius);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 16px;
+  transition: background-color 0.15s;
+}
+
+.btn-primary:hover {
+  background-color: #2ea043;
+}
+
+.btn-secondary {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 16px;
+  transition: background-color 0.15s;
+}
+
+.btn-secondary:hover {
+  background-color: #30363d;
+}
+
+/* ── Main content ─────────────────────────────────────────── */
+main {
+  padding: 14px;
+}
+
+.billing-period {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ── Stats cards ─────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px 8px;
+  gap: 4px;
+}
+
+.card-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.value-used {
+  color: var(--yellow-light);
+}
+
+.value-remaining {
+  color: var(--green-light);
+}
+
+/* ── Progress bar ────────────────────────────────────────── */
+.progress-section {
+  margin-bottom: 14px;
+}
+
+.progress-bar-track {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  height: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background-color: var(--green);
+  transition: width 0.4s ease, background-color 0.4s ease;
+  width: 0%;
+}
+
+.progress-fill.progress-yellow {
+  background-color: var(--yellow);
+}
+
+.progress-fill.progress-red {
+  background-color: var(--red);
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.progress-pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.cache-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Breakdown sections ──────────────────────────────────── */
+.breakdown-section {
+  margin-bottom: 12px;
+}
+
+.section-title {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+/* Model list */
+.breakdown-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.breakdown-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.model-name {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.model-bar-track {
+  width: 80px;
+  height: 6px;
+  background-color: var(--bg-tertiary);
+  border-radius: 100px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.model-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background-color: var(--link);
+}
+
+.model-count {
+  color: var(--text-muted);
+  font-size: 11px;
+  min-width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Daily chart */
+.daily-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 60px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.day-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.day-bar {
+  width: 10px;
+  background-color: var(--link);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: opacity 0.15s;
+  cursor: default;
+}
+
+.day-bar:hover {
+  opacity: 0.75;
+}
+
+.day-bar[title] {
+  cursor: help;
+}
+
+.day-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  height: 28px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
