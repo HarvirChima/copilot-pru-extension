@@ -8,8 +8,7 @@ A lightweight Chrome Extension (Manifest V3) that fetches your Copilot usage sta
 
 _Click the extension icon in your browser toolbar to see your Copilot PRU usage at a glance._
 
-<!-- Replace this placeholder with an actual screenshot once the extension is loaded -->
-![Copilot PRU Tracker popup placeholder](docs/screenshot-placeholder.png)
+<!-- Add a screenshot here once the extension is loaded in Chrome -->
 
 ---
 

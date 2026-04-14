@@ -39,6 +39,18 @@ function toggleVisibility() {
 }
 
 // ── Save token ─────────────────────────────────────────────
+/**
+ * Returns true if the token looks structurally valid (a known GitHub token prefix
+ * OR a sufficiently long opaque string). This is a basic sanity check only —
+ * token validity is confirmed by the "Test Connection" button.
+ */
+function looksLikeGitHubToken(token) {
+  const knownPrefixes = ['ghp_', 'github_pat_', 'gho_', 'ghs_', 'ghr_'];
+  if (knownPrefixes.some(prefix => token.startsWith(prefix))) return true;
+  // Allow any token >= 20 chars so fine-grained PATs with custom prefixes work too
+  return token.length >= 20;
+}
+
 function saveToken() {
   const token = tokenInput.value.trim();
 
@@ -47,7 +59,7 @@ function saveToken() {
     return;
   }
 
-  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_') && !token.startsWith('gho_') && token.length < 20) {
+  if (!looksLikeGitHubToken(token)) {
     showFeedback('error', 'This doesn\'t look like a valid GitHub token. Tokens usually start with "ghp_".');
     return;
   }

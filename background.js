@@ -4,6 +4,9 @@
 const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutes
 const GITHUB_API_BASE = 'https://api.github.com';
 
+// Standard GitHub REST API headers required for all requests.
+// X-GitHub-Api-Version pins the API schema to the 2022-11-28 release, which is the
+// current stable version. Update this when GitHub releases a newer stable API version.
 const DEFAULT_HEADERS = (token) => ({
   'Authorization': `Bearer ${token}`,
   'Accept': 'application/vnd.github+json',

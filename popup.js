@@ -1,5 +1,8 @@
 // Copilot PRU Tracker – Popup script
 
+// ── Constants ──────────────────────────────────────────────
+const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
 // ── DOM helpers ────────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
 
@@ -114,7 +117,7 @@ function renderContent(data, cached) {
   if (data.billingCycle) {
     const fmt = (iso) => {
       const d = new Date(iso);
-      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     };
     billingPeriod.textContent = `Billing period: ${fmt(data.billingCycle.start)} – ${fmt(data.billingCycle.end)}`;
   } else {
@@ -175,7 +178,7 @@ function renderContent(data, cached) {
 
 function formatCurrentPeriod() {
   const now = new Date();
-  const month = now.toLocaleString(undefined, { month: 'long' });
+  const month = now.toLocaleString('en-US', { month: 'long' });
   return `Billing period: ${month} ${now.getFullYear()}`;
 }
 
@@ -237,8 +240,7 @@ function formatDayLabel(dateStr) {
     if (parts.length === 3) {
       const month = parseInt(parts[1], 10);
       const day   = parseInt(parts[2], 10);
-      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      return `${months[month - 1]} ${day}`;
+      return `${MONTH_LABELS[month - 1]} ${day}`;
     }
     return dateStr;
   } catch {
