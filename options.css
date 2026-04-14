@@ -1,0 +1,283 @@
+/* =========================================================
+   Copilot PRU Tracker – Options page styles
+   GitHub-inspired dark theme
+   ========================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary:   #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary:  #21262d;
+  --border:       #30363d;
+  --text-primary: #c9d1d9;
+  --text-muted:   #8b949e;
+  --link:         #58a6ff;
+  --green:        #238636;
+  --green-hover:  #2ea043;
+  --red:          #da3633;
+  --red-hover:    #b91c1c;
+  --radius:       6px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+}
+
+/* ── Page container ──────────────────────────────────────── */
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── Page header ─────────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* ── Form ────────────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+}
+
+.form-input {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  outline: none;
+  padding: 6px 38px 6px 10px;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--link);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+.input-action-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  transition: color 0.15s;
+}
+
+.input-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.input-action-btn:hover {
+  color: var(--text-primary);
+}
+
+/* ── Feedback banner ─────────────────────────────────────── */
+.feedback {
+  border-radius: var(--radius);
+  font-size: 13px;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+}
+
+.feedback.feedback-success {
+  background-color: rgba(35, 134, 54, 0.15);
+  border: 1px solid rgba(35, 134, 54, 0.4);
+  color: #3fb950;
+}
+
+.feedback.feedback-error {
+  background-color: rgba(218, 54, 51, 0.15);
+  border: 1px solid rgba(218, 54, 51, 0.4);
+  color: #f85149;
+}
+
+.feedback.feedback-info {
+  background-color: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  color: var(--link);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 16px;
+  transition: background-color 0.15s;
+}
+
+.btn-primary {
+  background-color: var(--green);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--green-hover);
+}
+
+.btn-secondary {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: #30363d;
+}
+
+.btn-danger {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: #f85149;
+}
+
+.btn-danger:hover {
+  background-color: rgba(218, 54, 51, 0.15);
+  border-color: var(--red);
+}
+
+/* Disabled state */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Instructions ────────────────────────────────────────── */
+.instructions {
+  color: var(--text-primary);
+  font-size: 13px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.instructions a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.instructions a:hover {
+  text-decoration: underline;
+}
+
+.scope-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+code {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  padding: 1px 5px;
+}
+
+.note {
+  background-color: rgba(210, 153, 34, 0.1);
+  border: 1px solid rgba(210, 153, 34, 0.3);
+  border-radius: var(--radius);
+  color: #e3b341;
+  font-size: 12px;
+  padding: 10px 12px;
+}
